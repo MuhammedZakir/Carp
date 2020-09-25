@@ -12,9 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - uses: actions/setup-haskell@v1
-
+      
     - run:   echo ::set-env name=GITHUB_SHA::$GITHUB_SHA
       shell: bash
 
@@ -24,6 +22,8 @@ jobs:
         path: ~/.stack
         key: ${{ runner.os }}-stack-${{ env.GITHUB_SHA }}
         restore-keys: ${{ runner.os }}-stack-
+
+    - uses: actions/setup-haskell@v1
 
     - name: Build
       run: stack build
